@@ -520,6 +520,52 @@ function highestCommonFactor(first, second) {
     console.log(`HCF of ${first} and ${second} is : ${highestCommonFactor}`)
 }
 
+// 44. Write a program in C to find LCM of any two numbers using HCF.
+
+function hcf(x, y) {
+    let commonFactorsOfTwoNumbers = []
+    for(let i = 1; i < y; i++) {
+        if(x % i === 0 && y % i === 0) {
+            commonFactorsOfTwoNumbers.push(i)
+        }
+    }
+    let highestCommonFactorOfTwoNumbers = commonFactorsOfTwoNumbers[0];
+    for(let j = 0; j < commonFactorsOfTwoNumbers.length; j++) {
+        if(commonFactorsOfTwoNumbers[j] > highestCommonFactorOfTwoNumbers) {
+            highestCommonFactorOfTwoNumbers = commonFactorsOfTwoNumbers[j]
+        }
+    }
+    return highestCommonFactorOfTwoNumbers
+}
+
+function leastCommonMultiple(n1, n2) {
+    let highestCommon = hcf(n1, n2)
+    let leastMultiple = n1*n2 / highestCommon;
+    console.log(`The LCM of ${n1} and ${n2} is : ${leastMultiple}`)
+}
+
+// 45. Write a program in C to find LCM of any two numbers.
+
+function lcf(n1, n2) {
+    let commonNumber = n1*n2;
+    if(n1 < n2) {
+        for(let i = commonNumber; i >= n2; i--) {
+            if((i % n1 === 0) && (i % n2 === 0) && (i < commonNumber)){
+                commonNumber = i
+            }
+        }
+    } else if(n1 > n2) {
+        for(let j = commonNumber; j >= n1; j--) {
+            if((j % n2 === 0) && (j % n1 === 0) && (j < commonNumber)){
+                commonNumber = j
+            }
+        }
+    } else {
+        commonNumber = n1
+    }
+    console.log(`The LCM of ${n1} and ${n2} is : ${commonNumber}`)
+}
+
 // 47. Write a C program to check whether a number is a Strong Number or not.
 
 function isStrong(n) {
